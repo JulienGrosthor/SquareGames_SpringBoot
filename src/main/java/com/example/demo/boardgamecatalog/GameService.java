@@ -10,5 +10,5 @@ public interface GameService {
     Game createGame(GameCreationParams params);
     List<Game> getAllGames();
     Game getGameById(int gameId);
-    String deleteGameById(int gameId);
+    Game deleteGameById(int gameId);
 }

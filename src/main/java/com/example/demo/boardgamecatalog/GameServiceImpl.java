@@ -4,7 +4,9 @@ package com.example.demo.boardgamecatalog;
 import fr.le_campus_numerique.square_games.engine.Game;
 import fr.le_campus_numerique.square_games.engine.GameFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,16 +37,16 @@ public class GameServiceImpl implements GameService {
     @Override
     public Game getGameById(int gameId) {
         if (gameId < 0 || gameId >= games.size()) {
-            throw new IllegalArgumentException("Invalid game ID: " + gameId);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         return games.get(gameId);
     }
 
     @Override
-    public String deleteGameById(int gameId) {
+    public Game deleteGameById(int gameId) {
         if (gameId < 0 || gameId >= games.size()) {
-            throw new IllegalArgumentException("Invalid game ID: " + gameId);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        return "Game removed: " + games.remove(gameId).toString();
+        return games.remove(gameId);
     }
 }

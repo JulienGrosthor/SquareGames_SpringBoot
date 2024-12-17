@@ -2,7 +2,9 @@ package com.example.demo.boardgamecatalog;
 
 import fr.le_campus_numerique.square_games.engine.Game;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -28,12 +30,18 @@ public class GameController {
     // Endpoint pour récupérer l'état d'une partie spécifique (par ID)
     @GetMapping("/{gameId}")
     public Game getGame(@PathVariable int gameId) {
+        if (gameService.getGameById(gameId) == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
         return gameService.getGameById(gameId);
     }
 
+
     // Endpoint pour supprimer une partie spécifique (par ID)
     @DeleteMapping("/{gameId}")
-    public String deleteGame(@PathVariable int gameId) {
-        return gameService.deleteGameById(gameId);
+    public void deleteGame(@PathVariable int gameId) {
+        if (gameService.deleteGameById(gameId) == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 }

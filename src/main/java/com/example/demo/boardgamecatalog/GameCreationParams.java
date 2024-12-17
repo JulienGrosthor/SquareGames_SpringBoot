@@ -1,9 +1,9 @@
 package com.example.demo.boardgamecatalog;
 
 public class GameCreationParams {
-    private String gameType; // Type du jeu
-    private int playerCount; // Nombre de joueurs
-    private int boardSize;   // Taille du plateau
+    private final String gameType; // Type du jeu
+    private final int playerCount; // Nombre de joueurs
+    private final int boardSize;   // Taille du plateau
 
     // Constructeur
     public GameCreationParams(String gameType, int playerCount, int boardSize) {

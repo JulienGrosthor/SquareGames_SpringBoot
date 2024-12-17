@@ -37,7 +37,7 @@ public class GameServiceImpl implements GameService {
     @Override
     public Game getGameById(int gameId) {
         if (gameId < 0 || gameId >= games.size()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            return null;
         }
         return games.get(gameId);
     }
@@ -45,7 +45,7 @@ public class GameServiceImpl implements GameService {
     @Override
     public Game deleteGameById(int gameId) {
         if (gameId < 0 || gameId >= games.size()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            return null;
         }
         return games.remove(gameId);
     }

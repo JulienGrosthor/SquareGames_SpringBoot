@@ -14,6 +14,7 @@ public class GameController {
     @Autowired
     private GameCatalog gameCatalog;
     private GameFactory gameFactory;
+    private GameService gameService;
     private final List<Game> games = new ArrayList<>();
 
     // Endpoint pour créer une nouvelle partie
@@ -35,7 +36,7 @@ public class GameController {
         return games;
     }
 
-    // Endpoint pour récupérer l'état d'une partie spécifique
+    // Endpoint pour récupérer l'état d'une partie spécifique (par ID)
     @GetMapping("/{gameId}")
     public String getGame(@PathVariable int gameId) {
         if (gameId < 0 || gameId >= games.size()) {
@@ -44,11 +45,12 @@ public class GameController {
         return games.get(gameId).toString();
     }
 
+    // Endpoint pour supprimer une partie spécifique (par ID)
     @DeleteMapping("/{gameId}")
     public String deleteGame(@PathVariable int gameId) {
         if (gameId < 0 || gameId >= games.size()) {
             return "No game found with game ID : " + gameId;
         }
-        return games.remove(gameId).toString();
+        return "Game removed: " + games.remove(gameId).toString();
     }
 }

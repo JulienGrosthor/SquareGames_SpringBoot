@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/games")
@@ -29,9 +30,9 @@ public class GameController {
 
     // Endpoint pour récupérer l'état d'une partie spécifique (par ID)
     @GetMapping("/{gameId}")
-    public Game getGame(@PathVariable int gameId) {
+    public Game getGame(@PathVariable UUID gameId) {
         if (gameService.getGameById(gameId) == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game not found");
         }
         return gameService.getGameById(gameId);
     }
@@ -39,9 +40,9 @@ public class GameController {
 
     // Endpoint pour supprimer une partie spécifique (par ID)
     @DeleteMapping("/{gameId}")
-    public void deleteGame(@PathVariable int gameId) {
+    public void deleteGame(@PathVariable UUID gameId) {
         if (gameService.deleteGameById(gameId) == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Game not found");
         }
     }
 }

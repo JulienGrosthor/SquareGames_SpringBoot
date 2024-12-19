@@ -37,7 +37,6 @@ public class GameController {
         return gameService.getGameById(gameId);
     }
 
-
     // Endpoint pour supprimer une partie spécifique (par ID)
     @DeleteMapping("/{gameId}")
     public void deleteGame(@PathVariable UUID gameId) {

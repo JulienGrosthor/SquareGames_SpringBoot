@@ -1,5 +1,6 @@
-package com.example.demo.boardgamecatalog;
+package com.example.demo.boardgamecatalog.controller;
 
+import com.example.demo.boardgamecatalog.GameCatalog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

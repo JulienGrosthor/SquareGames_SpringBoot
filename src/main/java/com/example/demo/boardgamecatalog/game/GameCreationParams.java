@@ -1,4 +1,4 @@
-package com.example.demo.boardgamecatalog;
+package com.example.demo.boardgamecatalog.game;
 
 public class GameCreationParams {
     private final String gameType; // Type du jeu

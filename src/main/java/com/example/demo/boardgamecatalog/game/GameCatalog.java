@@ -1,4 +1,4 @@
-package com.example.demo.boardgamecatalog;
+package com.example.demo.boardgamecatalog.game;
 
 import com.example.demo.boardgamecatalog.plugins.GamePlugin;
 import fr.le_campus_numerique.square_games.engine.GameFactory;

@@ -1,7 +1,7 @@
 package com.example.demo.boardgamecatalog.controller;
 
-import com.example.demo.boardgamecatalog.GameCreationParams;
-import com.example.demo.boardgamecatalog.GameService;
+import com.example.demo.boardgamecatalog.game.GameCreationParams;
+import com.example.demo.boardgamecatalog.game.GameService;
 import fr.le_campus_numerique.square_games.engine.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

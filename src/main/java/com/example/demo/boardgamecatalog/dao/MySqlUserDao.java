@@ -80,8 +80,25 @@ public class MySqlUserDao implements UserDAO {
 
     @Override
     public void updateUser(GameUser user) {
+        String query = "UPDATE USERS SET name = ?, email = ? WHERE id = ?";
+        try (Connection connection = DbAccess.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
 
+            statement.setString(1, user.getName());
+            statement.setString(2, user.getEmail());
+            statement.setInt(3, user.getId());
+
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("User updated successfully!");
+            } else {
+                System.out.println("No user found with the given ID.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @Override
     public void deleteUser(int id) {

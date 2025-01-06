@@ -36,4 +36,12 @@ public class UserController {
         userDAO.deleteUser(id);
         return "User deleted (if existed).";
     }
+
+    @PutMapping("/{id}")
+    public String updateUser(@PathVariable int id, @RequestBody GameUser user) {
+        user.setId(id);
+        userDAO.updateUser(user);
+        return "User updated (if existed).";
+    }
+
 }

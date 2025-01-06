@@ -1,7 +1,7 @@
 package com.example.demo.boardgamecatalog.dao;
 
 import com.example.demo.boardgamecatalog.user.GameUser;
-import org.apache.catalina.User;
+//import org.apache.catalina.User;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
@@ -46,11 +46,10 @@ public class MySqlUserDao implements UserDAO {
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                resultSet.getInt("id");
                 resultSet.getString("name");
                 resultSet.getString("email");
 
-            return new GameUser(id,resultSet.getString("name"),resultSet.getString("email"));
+                return new GameUser(id, resultSet.getString("name"), resultSet.getString("email"));
 
             }
         } catch (SQLException e) {
@@ -60,12 +59,27 @@ public class MySqlUserDao implements UserDAO {
     }
 
     @Override
-    public void addUser(User user) {
+    public void addUser(GameUser user) {
+        String query = "INSERT INTO USERS (name, email) VALUES (?, ?)";
+        try (Connection connection = DbAccess.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
 
+            statement.setString(1, user.getName());
+            statement.setString(2, user.getEmail());
+
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("User added successfully");
+            } else {
+                System.out.println("User could not be added");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void updateUser(User user) {
+    public void updateUser(GameUser user) {
 
     }
 

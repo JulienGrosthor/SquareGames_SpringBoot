@@ -3,10 +3,7 @@ package com.example.demo.boardgamecatalog.controller;
 import com.example.demo.boardgamecatalog.dao.UserDAO;
 import com.example.demo.boardgamecatalog.user.GameUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,4 +25,9 @@ public class UserController {
         return userDAO.getUserById(id);
     }
 
+    @PostMapping("")
+    public String addUser(@RequestBody GameUser user) {
+        userDAO.addUser(user);
+        return "User added successfully!";
+    }
 }

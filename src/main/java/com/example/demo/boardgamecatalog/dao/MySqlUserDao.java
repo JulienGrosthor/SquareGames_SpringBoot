@@ -85,6 +85,21 @@ public class MySqlUserDao implements UserDAO {
 
     @Override
     public void deleteUser(int id) {
+        String query = "DELETE FROM USERS WHERE id = ?";
+        try (Connection connection = DbAccess.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
 
+            statement.setInt(1, id);
+
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("User deleted successfully!");
+            } else {
+                System.out.println("No user found with the given ID.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
 }

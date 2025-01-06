@@ -30,4 +30,10 @@ public class UserController {
         userDAO.addUser(user);
         return "User added successfully!";
     }
+
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable int id) {
+        userDAO.deleteUser(id);
+        return "User deleted (if existed).";
+    }
 }

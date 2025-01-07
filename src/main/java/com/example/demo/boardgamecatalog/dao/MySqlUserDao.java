@@ -99,7 +99,6 @@ public class MySqlUserDao implements UserDAO {
         }
     }
 
-
     @Override
     public void deleteUser(int id) {
         String query = "DELETE FROM USERS WHERE id = ?";
@@ -118,5 +117,4 @@ public class MySqlUserDao implements UserDAO {
             e.printStackTrace();
         }
     }
-
 }
